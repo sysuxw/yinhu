@@ -1,8 +1,8 @@
-import { index } from './root.controller';
+import { join } from './join.controller';
 import router from 'koa-router';
 
 const root = router();
 
-root.get('/', index);
+root.post('/join', join);
 
 export default root;
