@@ -1,5 +1,9 @@
 require('babel-register');
 require('babel-polyfill');
+
+// Set default node environment to development
+process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+
 const config = require('./src/config');
 const app = require('./src/server');
 

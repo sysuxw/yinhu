@@ -37,8 +37,8 @@
     "node": "~5.4.1"
   },
   "scripts": {
-    "start": "node index.js",
-    "serve": "node index.js",
+    "dev": "node index.js",
+    "prod": "NODE_ENV=production node index.js",
     "cluster": "koa-cluster index.js",
     "forever": "forever start index.js",
     "forever:cluster": "forever start koa-cluster index.js",

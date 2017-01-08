@@ -1,13 +1,12 @@
-'use strict';
-
 const path = require('path');
+const _ = require('lodash');
 
-const config = {
-  env: process.env.NODE_ENV || 'dev',
+// Base config
+var base = {
+  env: process.env.NODE_ENV,
   root: path.normalize(__dirname + '../../'),
-  ip: process.env.IP || 'localhost',
-  port: process.env.PORT || 9000,
-  logType: process.env.LOGTYPE || 'dev'
+  port: process.env.PORT,
 };
 
-module.exports = config;
+// Overide base config with environment
+module.exports = _.merge(base, require('./evironment/' + process.env.NODE_ENV + '.js'));
