@@ -2,10 +2,10 @@ const path = require('path');
 const _ = require('lodash');
 
 // Base config
-var base = {
-  env: process.env.NODE_ENV,
-  root: path.normalize(__dirname + '../../'),
-  port: process.env.PORT,
+const base = {
+    env: process.env.NODE_ENV,
+    root: path.normalize(__dirname + '../../'),
+    port: process.env.PORT,
 };
 
 // Overide base config with environment
