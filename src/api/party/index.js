@@ -1,9 +1,9 @@
 import { list, join } from './party.controller';
 import router from 'koa-router';
 
-const root = router();
+const party = router();
 
-root.get('/party/list', list);
-root.post('/party/join', join);
+party.get('/list', list);
+party.post('/join', join);
 
-export default root;
+export default party;

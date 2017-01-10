@@ -1,5 +1,5 @@
-import PartyDao from '../../dao/party';
-import UserDao from '../../dao/user';
+import PartyDao from '../../dao/party.dao';
+import UserDao from '../../dao/user.dao';
 
 export async function list(ctx, next) {
     const parties = await PartyDao.list(ctx);
