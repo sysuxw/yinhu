@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let partySchema = new Schema({
-    partyId: String,
+export const partySchema = new Schema({
     partyName: String,
     location: String,
-    paticipator: [String],    // 参与者openId
     time: Date,
-    intro: String
+    intro: String,
+    create_date: Date,
+    update_date: { type: Date, default: Date.now }
 });
 
-export default partySchema;
+export const joinPartySchema = new Schema({
+    userId: String,
+    partyId: String,
+    create_date: { type: Date, default: Date.now }
+});

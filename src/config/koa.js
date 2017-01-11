@@ -12,7 +12,7 @@ export default function configKoa(app) {
     }));
 
     app.use((ctx, next) => {
-        ctx.body = ctx.request.body;
+        console.log(ctx.request.method, ctx.request.body);
         return next();
     });
 

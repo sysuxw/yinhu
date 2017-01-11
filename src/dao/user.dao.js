@@ -1,12 +1,26 @@
 import mongoose from 'mongoose';
-import userSchema from '../schema/user.schema';
+import { userSchema } from '../schema/user.schema';
 
 const User = mongoose.model('User', userSchema);
 
-function list(users) {
-    return User.find().exec();
-}
+const UserDao = {
+    find() {
+        return User.find().exec();
+    },
 
-export default {
-  list
+    findOne(conditions) {
+        const query = User.where(conditions);
+        return query.findOne().exec();
+    },
+
+    findById(id) {
+        return User.findById(id).exec();
+    },
+
+    addUser(form) {
+        let user = new User(form);
+        return user.save();
+    }
 };
+
+export default UserDao;

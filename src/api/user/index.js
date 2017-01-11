@@ -1,9 +1,9 @@
-import { list, addUser } from './user.controller';
+import { findUsers, addUser } from './user.controller';
 import router from 'koa-router';
 
 const user = router();
 
-user.get('/list', list);
-user.post('/add', addUser);
+user.get('/list', findUsers);
+user.put('/add', addUser);
 
 export default user;

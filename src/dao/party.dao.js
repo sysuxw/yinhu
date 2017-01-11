@@ -1,17 +1,44 @@
 import mongoose from 'mongoose';
-import partySchema from '../schema/party.schema';
+import {
+    partySchema,
+    joinPartySchema
+} from '../schema/party.schema';
 
 const Party = mongoose.model('Party', partySchema);
+const JoinParty = mongoose.model('JoinParty', joinPartySchema);
 
-function joinParty(users) {
-    return new Promise((resolve, reject) => {
-        for (var i = 0; i < users.length; i++) {
-            let user = users[i];
-            Party.create(user);
-        }
-    });
-}
+const PartyDao = {
+    find() {
+        return Party.find().exec();
+    },
 
-export default {
-  joinParty
+    findOne(conditions) {
+        return Party.findOne(conditions).exec();
+    },
+
+    findById(id) {
+        return Party.findById(id).exec();
+    },
+
+    deleteById(id) {
+        return Party.findByIdAndRemove(id).exec();
+    },
+
+    updateById(id, form) {
+        return Party.findByIdAndUpdate(id, form).exec();
+    },
+
+    create(form) {
+        return Party.create(form);
+    },
+
+    findJoinParty(conditions) {
+        return JoinParty.findOne(conditions).exec();
+    },
+
+    joinParty(form) {
+        return JoinParty.create(form);
+    }
 };
+
+export default PartyDao;

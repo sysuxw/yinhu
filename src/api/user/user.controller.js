@@ -1,20 +1,26 @@
 import UserDao from '../../dao/user.dao';
 
-export async function list(ctx, next) {
+export async function findUsers(ctx, next) {
     try {
-        const users = await UserDao.list();
-        ctx.status = 200;
+        const users = await UserDao.find();
         ctx.body = users;
         await next();
     } catch (err) {
-        ctx.status = 500;
+        ctx.code = -1;
         ctx.body = err;
     }
 }
 
 export async function addUser(ctx, next) {
-    const user = await UserDao.addUser(ctx);
-    ctx.status = 200;
-    ctx.body = party;
+    let body = ctx.request.body;
+    const telephone = body.telephone;
+    let user = await UserDao.findOne({ telephone });
+    if (user === null) {
+        Object.assign(body, { create_date: Date.now() });
+        user = await UserDao.addUser(body);
+    } else {
+        ctx.code = 1;
+    }
+    ctx.body = user;
     await next();
 }
