@@ -1,5 +1,3 @@
-'use strict';
-
 import config from './index';
 import morgan from 'koa-morgan';
 import parser from 'koa-bodyparser';
@@ -14,13 +12,17 @@ export default function configKoa(app) {
     }));
 
     app.use(async (ctx, next) => {
-        console.log(ctx.request.method, ctx.request.path, ctx.request.body, path.normalize(config.root + '/src/public/index.html'));
-        if ('/' == ctx.path) return ctx.body = 'Try GET /package.json';
-        await send(ctx, path.normalize(config.root + '/src/public/index.html'));
+        console.log(ctx.request.method, ctx.request.path, ctx.request.body);
+        if (ctx.path.startsWith('/public')) {
+            await send(ctx, ctx.path, {
+                root: path.normalize(config.root + '/src')
+            });
+        } else {
+            return next();
+        }
     });
 
     app.use((ctx, next) => {
-        console.log(ctx.request.method, ctx.request.path, ctx.request.body);
         return next();
     });
 
