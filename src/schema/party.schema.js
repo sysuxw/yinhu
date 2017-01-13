@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 export const partySchema = new Schema({
     partyName: String,
     location: String,
-    time: Date,
+    time: String,
     intro: String,
     create_date: Date,
     update_date: { type: Date, default: Date.now }
