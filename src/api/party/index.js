@@ -4,7 +4,8 @@ import {
     addParty,
     updateParty,
     deleteParty,
-    joinParty
+    joinParty,
+    rejectParty
 } from './party.controller';
 
 import router from 'koa-router';
@@ -18,5 +19,6 @@ party.put('/update', updateParty);
 party.delete('/delete/:id', deleteParty);
 
 party.post('/join', joinParty);
+party.delete('/reject', rejectParty);
 
 export default party;

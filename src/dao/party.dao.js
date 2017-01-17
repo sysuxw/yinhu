@@ -38,7 +38,11 @@ const PartyDao = {
 
     joinParty(form) {
         return JoinParty.create(form);
-    }
+    },
+
+    deleteJoinParty(conditions) {
+        return JoinParty.remove(conditions).exec();
+    },
 };
 
 export default PartyDao;

@@ -1,5 +1,4 @@
 import PartyDao from '../../dao/party.dao';
-import UserDao from '../../dao/user.dao';
 
 export async function findParties(ctx, next) {
     const parties = await PartyDao.find();
@@ -42,6 +41,13 @@ export async function joinParty(ctx, next) {
     if (result === null) {
         result = await PartyDao.joinParty(body);
     }
+    ctx.body = result;
+    await next();
+}
+
+export async function rejectParty(ctx, next) {
+    const body = ctx.request.body;
+    result = await PartyDao.deleteJoinParty(body);
     ctx.body = result;
     await next();
 }
